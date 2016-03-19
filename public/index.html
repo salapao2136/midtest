@@ -1,76 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="hpApp">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>บ้านนายจิน</title>
 
-  <!--  Scripts-->
-  <script src="js/angular.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+    <!--  Scripts-->
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body ng-controller="hpCtrl">
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">บ้านนายจิน</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  </head>
+  <body ng-controller="hpCtrl">
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">บ้านนายจิน</a>
+      </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <h3 class="header center blue-text">Harry Potter Books</h3>
+      </div>
     </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
+
     <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Starter Template</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br>
+      <div class="section">
 
-    </div>
-  </div>
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 m4" ng-repeat="book in books">
+            <div class="center icon-block">
 
+              <img class="responsive-img" ng-src="{{book.img}}"/><br>
+              <h7 class="center light">{{book.name}}</h7>
 
-  <div class="container">
-    <div class="section" >
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4" ng-repeat="book in books">
-          <div class="icon-block">
-            <img ng-src="{{book.img}}" alt="" />
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+              <p>
+                <b>Price</b>
+                {{book.price}}
+                ฿</p>
+                <div class="col s6 m6">
+                    <b class="center">Amount</b>
+                </div>
+                <div class="col s6 m6">
+                  <input type="number" ng-model="book.amount" min="0" max="99">
+                </div>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>
-    <br><br>
-
-    <div class="section">
-
-    </div>
-  </div>
-
-
 
   </body>
 </html>
