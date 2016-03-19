@@ -1,5 +1,4 @@
-var angular
-angular.module('hpApp', [])
+var angular = angular.module('hpApp', [])
   .controller('hpCtrl', function ($scope) {
     $scope.books = [
       { name: "Harry Potter and the Philosopher 's Stone", img: 'img/1.jpg', price: 100 },
