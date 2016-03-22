@@ -31,9 +31,15 @@ var angular = angular.module('hpApp', [])
       var totalDiscount = discount(data)
 
       $scope.$apply
-      return {data: $scope.basket, discount: totalDiscount}
+      return {data: $scope.basket, discount: totalDiscount, total: sumTotalPrice($scope.basket)}
     }
 
+    var sumTotalPrice = function (items) {
+      var sumprice = items.reduce(function (sum, item) {
+        return sum + (item.price * item.amount)
+      }, 0)
+      return sumprice
+    }
     var checkHave = function (arr, name) {
       for (var i = 0; i < arr.length; i++) {
         if (arr[i].name === name) {
