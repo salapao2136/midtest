@@ -9,7 +9,7 @@ var angular = angular.module('hpApp', [])
       { name: 'Harry Potter and the Half-Blood Prince', img: 'img/6.jpg', price: 100.00 },
       { name: 'Harry Potter and the Deathly Hallows', img: 'img/7.jpg', price: 100.00 }
     ]
-
+    $scope.totalAmount = 0
     $scope.basket = []
 
     $scope.addToBasket = function (book) {
@@ -20,6 +20,18 @@ var angular = angular.module('hpApp', [])
         var data = {name: book.name, price: book.price, amount: 1}
         $scope.basket.push(data)
       }
+      $scope.show = $scope.bill()
+    }
+
+    $scope.bill = function () {
+      $scope.totalAmount = $scope.basket.reduce(function (sum, book) {
+        return sum + book.amount
+      }, 0)
+      var data = $scope.basket
+      var totalDiscount = discount(data)
+      console.log(totalDiscount);
+      $scope.$apply
+      return {data:$scope.basket,discount:totalDiscount}
     }
 
     var checkHave = function (arr, name) {
@@ -38,11 +50,62 @@ var angular = angular.module('hpApp', [])
       }
     }
 
-    $scope.bill = function () {
-      $scope.totalAmount = $scope.basket.reduce(function (sum, book) {
-        return sum + book.amount
-      }, 0)
+    $scope.title = function () {
+      if ($scope.totalAmount === 0) {
+        return 'บ้านนายจินบุ๊ค'
+      } else {
+        return '(' + $scope.totalAmount + ') บ้านนายจินบุ๊ค'
+      }
+    }
 
-      return $scope.basket
+    var getAmount = function (items) {
+      var amount = items.map(function (obj) {
+        return obj.amount
+      })
+      return amount
+    }
+
+    var discount = function (book) {
+      var items = book.map(function (obj) {
+        return {amount: obj.amount,price: obj.price}
+      })
+
+      var totalDis = 0
+      var amount = getAmount(items)
+
+      while (items.length > 1){
+        var sumprice = items.reduce(function (sum, item) {
+          return sum + item.price
+        }, 0)
+
+        totalDis += ((items.length - 1) / 10) * sumprice
+
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].amount > 0) {
+            amount[i] -= 1
+            items[i].amount -= 1
+          }
+        }
+        for (var j = items.length - 1; j >= 0; j--) {
+          if (items[j].amount === 0) {
+            items.splice(j, 1)
+            amount.splice(j, 1)
+          }
+        }
+      }
+      return totalDis
+    }
+
+    var findMax = function (arr) {
+      var max = arr[0]
+      if (arr.length === 0) {
+        return 0
+      }
+      for (var i = 1; i < arr.length; i++) {
+        if (max <= arr[i]) {
+          max = arr[i]
+        }
+      }
+      return max
     }
   })
