@@ -13,10 +13,36 @@ var angular = angular.module('hpApp', [])
     $scope.basket = []
 
     $scope.addToBasket = function (book) {
-      $scope.basket.push(book)
+      if (checkHave($scope.basket, book.name)) {
+        var index = findIndex($scope.basket, book.name)
+        $scope.basket[index].amount += 1
+      } else {
+        var data = {name: book.name, price: book.price, amount: 1}
+        $scope.basket.push(data)
+      }
     }
 
-    $scope.result = function () {
+    var checkHave = function (arr, name) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].name === name) {
+          return true
+        }
+      }
+    }
+
+    var findIndex = function (arr, name) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].name === name) {
+          return i
+        }
+      }
+    }
+
+    $scope.bill = function () {
+      $scope.totalAmount = $scope.basket.reduce(function (sum, book) {
+        return sum + book.amount
+      }, 0)
+
       return $scope.basket
     }
   })
