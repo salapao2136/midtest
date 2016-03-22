@@ -29,9 +29,9 @@ var angular = angular.module('hpApp', [])
       }, 0)
       var data = $scope.basket
       var totalDiscount = discount(data)
-      console.log(totalDiscount);
+
       $scope.$apply
-      return {data:$scope.basket,discount:totalDiscount}
+      return {data: $scope.basket, discount: totalDiscount}
     }
 
     var checkHave = function (arr, name) {
@@ -67,13 +67,13 @@ var angular = angular.module('hpApp', [])
 
     var discount = function (book) {
       var items = book.map(function (obj) {
-        return {amount: obj.amount,price: obj.price}
+        return {amount: obj.amount, price: obj.price}
       })
 
       var totalDis = 0
       var amount = getAmount(items)
 
-      while (items.length > 1){
+      while (items.length > 1) {
         var sumprice = items.reduce(function (sum, item) {
           return sum + item.price
         }, 0)
@@ -94,18 +94,5 @@ var angular = angular.module('hpApp', [])
         }
       }
       return totalDis
-    }
-
-    var findMax = function (arr) {
-      var max = arr[0]
-      if (arr.length === 0) {
-        return 0
-      }
-      for (var i = 1; i < arr.length; i++) {
-        if (max <= arr[i]) {
-          max = arr[i]
-        }
-      }
-      return max
     }
   })
