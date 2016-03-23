@@ -14,55 +14,33 @@ var angular = angular.module('hpApp', [])
 
     $scope.addToBasket = function (book) {
       if (checkHave($scope.basket, book.name)) {
-        var index = findIndex($scope.basket, book.name)
+        var index = $scope.basket.findIndex(element => element.name === book.name)
         $scope.basket[index].amount += 1
       } else {
-        var data = {name: book.name, price: book.price, amount: 1}
-        $scope.basket.push(data)
+        $scope.basket.push({name: book.name, price: book.price, amount: 1})
       }
       $scope.bill()
     }
 
     var filterData = function (array) {
-      function isNotZero (element, index, array) {
-        return (element.amount !== 0)
-      }
-      return array.filter(isNotZero)
+      return array.filter(element => element.amount !== 0)
     }
 
     $scope.bill = function () {
       $scope.basket = filterData($scope.basket)
 
-      $scope.totalAmount = $scope.basket.reduce(function (sum, book) {
-        return sum + book.amount
-      }, 0)
-      var data = $scope.basket
-      var totalDiscount = discount(data)
+      $scope.totalAmount = $scope.basket.reduce((sum, book) => sum + book.amount, 0)
+      var totalDiscount = discount($scope.basket)
 
-      $scope.$apply
-      var returnData = {data: $scope.basket, discount: totalDiscount, total: sumTotalPrice($scope.basket)}
-      $scope.show = returnData
+      $scope.show = {data: $scope.basket, discount: totalDiscount, total: sumTotalPrice($scope.basket)}
     }
 
     var sumTotalPrice = function (items) {
-      var sumprice = items.reduce(function (sum, item) {
-        return sum + (item.price * item.amount)
-      }, 0)
-      return sumprice
+      return items.reduce((sum, item) => sum + (item.price * item.amount), 0)
     }
 
     var checkHave = function (arr, name) {
-      function isName (element, index, array) {
-        return element.name === name
-      }
-      return arr.find(isName)
-    }
-
-    var findIndex = function (arr, name) {
-      function isName (element, index, array) {
-        return element.name === name
-      }
-      return arr.findIndex(isName)
+      return arr.find(element => element.name === name)
     }
 
     $scope.title = function () {
@@ -74,23 +52,13 @@ var angular = angular.module('hpApp', [])
     }
 
     var discount = function (book) {
-      var items = book.map(function (obj) {
-        return {amount: obj.amount, price: obj.price}
-      })
-
+      var items = book.map(obj => { return { amount: obj.amount, price: obj.price } })
       var totalDis = 0
 
       while (items.length > 1) {
-        var sumprice = items.reduce(function (sum, item) {
-          return sum + item.price
-        }, 0)
-
+        var sumprice = items.reduce((sum, item) => sum + item.price, 0)
         totalDis += ((items.length - 1) / 10) * sumprice
-
-        items = items.map(function (obj) {
-          return {amount: obj.amount - 1, price: obj.price}
-        })
-
+        items = items.map(obj => { return { amount: obj.amount - 1, price: obj.price } })
         items = filterData(items)
       }
       return totalDis
