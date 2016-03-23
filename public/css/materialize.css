@@ -7897,8 +7897,8 @@ small {
 
 @media only screen and (min-width: 993px) {
   #toast-container {
-    top: 10%;
-    right: 7%;
+    bottom: 10%;
+    left: 1%;
     max-width: 86%;
   }
 }

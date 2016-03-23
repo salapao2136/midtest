@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="hpApp" ng-controller="hpCtrl">
   <head>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>{{title()}}</title>
@@ -15,6 +16,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
   </head>
   <body >
     <nav class="light-blue lighten-1" role="navigation">
@@ -50,31 +52,31 @@
                       <b>จำนวน</b>
                     </div>
                     </p>
-                    <div ng-repeat="item in show.data" class="row" style="margin-bottom:0px;">
+                    <div ng-repeat="item in basket" class="row" style="margin-bottom:0px;" >
                       <div class="col s9 m10">
                         {{item.name}}
                       </div>
                       <div class="col m2 s3">
-                        {{item.amount}}
+                        <input type="number" ng-model="item.amount" ng-change="bill()" style="height:30px;margin-bottom:0;" min="0">
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col s10 m10" ng-hide="show.discount === 0" align="right">
+                    <div class="row" style="margin-bottom:0px;margin-top:10px" align="right">
+                      <div class="col s7 m10" ng-hide="show.discount === 0">
                         ส่วนลด
                       </div>
-                      <div class="col s2 m2" ng-hide="show.discount === 0">
+                      <div class="col m2 s5" ng-hide="show.discount === 0">
                         {{show.discount}} ฿
                       </div>
-                      <div class="col s10 m10" align="right">
+                      <div class="col s7 m10">
                         รวม
                       </div>
-                      <div class="col s2 m2">
+                      <div class="col m2 s5">
                         {{show.total}} ฿
                       </div>
-                      <div class="col s10 m10" align="right">
+                      <div class="col s7 m10">
                         รวมสุทธิ
                       </div>
-                      <div class="col s2 m2">
+                      <div class="col m2 s5">
                         {{show.total-show.discount}} ฿
                       </div>
                     </div>
@@ -112,7 +114,7 @@
                 {{book.price}}
                 ฿</p>
 
-              <a class="waves-effect waves-light btn" ng-click="addToBasket({name:book.name,price:book.price})">
+              <a class="waves-effect waves-light btn" ng-click="addToBasket({name:book.name,price:book.price})" onclick="Materialize.toast('เพิ่มสินค้าในตะกร้าแล้ว', 2000,'rounded')">
                 <i class="material-icons">shopping_basket</i>
                 Buy</a><br><br>
             </div>
