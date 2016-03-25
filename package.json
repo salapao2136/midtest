@@ -7,10 +7,16 @@
     "test": "node test.js",
     "start": "node index.js"
   },
+  "standard": {
+    "globals": ["angular"]
+  },
+  "devDependencies": {
+    "standard": "^6.0.8"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "standard": "^6.0.8"
+    "nightmare": "^2.2.0"
   }
 }

@@ -1,4 +1,4 @@
-var angular = angular.module('hpApp', [])
+angular.module('hpApp', [])
   .controller('hpCtrl', function ($scope) {
     $scope.books = [
       { name: "Harry Potter and the Philosopher 's Stone", img: 'img/1.jpg', price: 100.00 },
@@ -52,13 +52,17 @@ var angular = angular.module('hpApp', [])
     }
 
     var discount = function (book) {
-      var items = book.map((obj) => { return { amount: obj.amount, price: obj.price } })
+      var items = book.map((obj) => {
+        return { amount: obj.amount, price: obj.price }
+      })
       var totalDis = 0
 
       while (items.length > 1) {
         var sumprice = items.reduce((sum, item) => sum + item.price, 0)
         totalDis += ((items.length - 1) / 10) * sumprice
-        items = items.map((obj) => { return { amount: obj.amount - 1, price: obj.price } })
+        items = items.map((obj) => {
+          return { amount: obj.amount - 1, price: obj.price }
+        })
         items = filterData(items)
       }
       return totalDis

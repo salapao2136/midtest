@@ -16,7 +16,7 @@
 }
 .overlay {
   position: fixed;
-  top: 2%;
+  top: 35px;
   right: 2%;
   z-index: 10;
 }
@@ -36,4 +36,12 @@
   padding-left: 5px;
   padding-right: 5px;
 
+}
+
+.customCard{
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: white;
 }

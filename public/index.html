@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="hpApp" ng-controller="hpCtrl">
   <head>
-    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="icon" type="image/png" href="img/favicon.png"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>{{title()}}</title>
 
     <!--  Scripts-->
     <script src="js/angular.min.js"></script>
@@ -16,17 +15,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
+    <title>{{title()}}</title>
   </head>
   <body >
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="blue darken-1" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">บ้านนายจิน</a>
+        <a id="logo-container" class="brand-logo white-text">บ้านนายจินบุ๊ค</a>
       </div>
     </nav>
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
-        <h3 class="header center blue-text">Harry Potter Books</h3>
+        <h3 class="header center text-darken-2 red-text">Harry Potter Books</h3>
       </div>
     </div>
 
@@ -51,36 +50,35 @@
                     <div class="col m2 s3">
                       <b>จำนวน</b>
                     </div>
-                    </p>
-                    <div ng-repeat="item in basket" class="row" style="margin-bottom:0px;" >
-                      <div class="col s9 m10">
-                        {{item.name}}
-                      </div>
-                      <div class="col m2 s3">
-                        <input type="number" ng-model="item.amount" ng-change="bill()" style="height:30px;margin-bottom:0;" min="0">
-                      </div>
+                  </p>
+                  <div ng-repeat="item in basket" class="row" style="margin-bottom:0px;">
+                    <div class="col s9 m10">
+                      {{item.name}}
                     </div>
-                    <div class="row" style="margin-bottom:0px;margin-top:10px" align="right">
-                      <div class="col s7 m10" ng-hide="show.discount === 0">
-                        ส่วนลด
-                      </div>
-                      <div class="col m2 s5" ng-hide="show.discount === 0">
-                        {{show.discount}} ฿
-                      </div>
-                      <div class="col s7 m10">
-                        รวม
-                      </div>
-                      <div class="col m2 s5">
-                        {{show.total}} ฿
-                      </div>
-                      <div class="col s7 m10">
-                        รวมสุทธิ
-                      </div>
-                      <div class="col m2 s5">
-                        {{show.total-show.discount}} ฿
-                      </div>
+                    <div class="col m2 s3">
+                      <input type="number" ng-model="item.amount" ng-change="bill()" style="height:30px;margin-bottom:0;" min="0">
                     </div>
-
+                  </div>
+                  <div class="row" style="margin-bottom:0px;margin-top:10px" align="right">
+                    <div class="col s7 m10" ng-hide="show.discount === 0">
+                      ส่วนลด
+                    </div>
+                    <div class="col m2 s5" ng-hide="show.discount === 0">
+                      <p class="discount">{{show.discount}}</p> ฿
+                    </div>
+                    <div class="col s7 m10">
+                      ราคารวม
+                    </div>
+                    <div class="col m2 s5">
+                      <p class="total">{{show.total}}</p> ฿
+                    </div>
+                    <div class="col s7 m10">
+                      รวมสุทธิ
+                    </div>
+                    <div class="col m2 s5">
+                      <p class="totalNet">{{show.total-show.discount}}</p> ฿
+                    </div>
+                  </div>
 
                 </div>
                 <div ng-show="totalAmount===0">
@@ -98,31 +96,52 @@
 
     </div>
 
+
     <div class="container">
-      <div class="section">
+      <div class="row">
+        <div class="col s6 m4 l3 center" ng-repeat="book in books">
 
-        <!--   Icon Section   -->
-        <div class="row">
-          <div class="col s12 m4" ng-repeat="book in books">
-            <div class="center icon-block">
-
-              <img class="responsive-img" ng-src="{{book.img}}"/><br>
-              <h7 class="center light">{{book.name}}</h7>
-
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" ng-src="{{book.img}}"/>
+            </div>
+            <div class="card-content customCard" style="padding-bottom: 5px;padding-top: 0px;">
+              <span class="card-title activator grey-text text-darken-4">{{book.price}}
+                ฿<i class="material-icons right">more_vert</i>
+              </span>
               <p>
-                <b>Price</b>
-                {{book.price}}
-                ฿</p>
-
-              <a class="waves-effect waves-light btn" ng-click="addToBasket({name:book.name,price:book.price})" onclick="Materialize.toast('เพิ่มสินค้าในตะกร้าแล้ว', 2000,'rounded')">
-                <i class="material-icons">shopping_basket</i>
-                Buy</a><br><br>
+                <a class="waves-effect waves-light btn-floating button-{{$index}}" ng-click="addToBasket({name:book.name,price:book.price})" onclick="Materialize.toast('เพิ่มสินค้าในตะกร้าแล้ว', 2000,'rounded')">
+                  <i class="material-icons">shopping_basket</i>
+                  Buy</a>
+              </p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                <i class="material-icons right">close</i>
+              </span>
+              <p>{{book.name}}</p>
             </div>
           </div>
         </div>
-
       </div>
 
     </div>
+
+    <footer class="page-footer black">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Created By</h5>
+            <p class="grey-text text-lighten-4">Chanwit Piromplad 56060621610020 IT_3RA</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          © 2016 Copyright Ton Piromplad - All Rights Reserved
+          <a class="grey-text text-lighten-4 right" href="https://www.facebook.com/ton.piromplad">Facebook</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
