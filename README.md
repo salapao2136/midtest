@@ -1,6 +1,10 @@
 <h1 align="center">บ้านนายจินบุ๊ค</h1>
-<p align="center">[![logo](/public/img/apple-icon-180x180.png)](https://hpjin.herokuapp.com/)</p>
-<p align="center">[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)</p>
+<p align="center">
+<a href="https://hpjin.herokuapp.com/">
+<img src="/public/img/apple-icon-180x180.png"/></a></p>
+<p align="center">
+<a href="http://standardjs.com/">
+<img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg"/></a></p>
 
 ___
 
