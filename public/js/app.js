@@ -1,3 +1,4 @@
+/* global angular */
 angular.module('hpApp', [])
   .controller('hpCtrl', function ($scope) {
     $scope.books = [
