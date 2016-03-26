@@ -3,7 +3,7 @@ require('mocha-generators').install()
 var Nightmare = require('nightmare')
 var expect = require('chai').expect
 
-describe('Test discounts of Harry Potter Book', function () {
+describe('TDD of Harry Potter Book', function () {
   it('20', function * () {
     this.timeout(15000)
     var nightmare = Nightmare()
