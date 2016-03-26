@@ -2,8 +2,7 @@
 require('mocha-generators').install()
 var Nightmare = require('nightmare')
 var expect = require('chai').expect
-
-var server = require('./server.js')
+require('./server.js')
 
 describe('TDD of Harry Potter Book', function () {
   it('episode 2&3 episode each 2 book  each discount 40 bath', function * () {
