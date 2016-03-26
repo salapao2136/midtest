@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha test",
-    "start": "node index.js"
+    "test": "node_modules/.bin/mocha test.js",
+    "start": "node server.js"
   },
   "standard": {
     "globals": [
