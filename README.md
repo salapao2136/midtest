@@ -4,7 +4,7 @@
 <img src="/public/img/apple-icon-180x180.png"/></a></p>
 <p align="center">
 <a href="http://standardjs.com/">
-<img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg"/></a></p>
+<img src="xample-test.herokuapp.com"/></a></p>
 
 ___
 
